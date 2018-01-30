@@ -1,23 +1,48 @@
-.container {
-  boarder: 1px;
-  border-radius: 1px;
+section {
+  margin: 2em;
+  border: 1px solid #e0dfdf;
+  border-radius: 5px;
 }
 section.new-tweet {
-  background: #eee;
-  border-radius: 5px;
-  margin: 2em;
   padding: 10px;
+  background: #eee;
 }
 
-section h2 {
+section.new-tweet h2 {
   width: 100%;
   border-bottom: 1px solid #000;
 }
 
-section textarea {
+section.new-tweet textarea {
   width: 100%;
   padding: 5px;
 }
-section .counter {
+
+section.new-tweet .counter {
   float: right;
+}
+
+section.tweet {
+  opacity: 0.7;
+}
+section.tweet:hover {
+  opacity: 1;
+  background-color: 1px solid black;
+}
+section.tweet header {
+  /*opacity: 0.5;*/
+  padding: 10px;
+  height: 60px;
+  background: #eeeeee;
+}
+section.tweet span {
+  float: right;
+}
+section.tweet article {
+  padding: 10px;
+}
+section.tweet footer {
+  border-top: 1px solid #eeeeee;
+  font-size: 70%;
+  padding: 5px;
 }
