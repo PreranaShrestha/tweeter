@@ -1,4 +1,5 @@
 section {
+  display: none;
   margin: 2em;
   border: 1px solid #e0dfdf;
   border-radius: 5px;
@@ -22,27 +23,67 @@ section.new-tweet .counter {
   float: right;
 }
 
-section.tweet {
+section.new-tweet .over-character-limit {
+  color: red;
+}
+
+section.new-tweet input:hover {
+  background-color: #e7e7e7;
+  color: black
+}
+
+article.tweet {
+  margin: 2em;
+  border: 1px solid #e0dfdf;
+  border-radius: 5px;
   opacity: 0.7;
 }
-section.tweet:hover {
+
+article.tweet:hover {
   opacity: 1;
-  background-color: 1px solid black;
 }
-section.tweet header {
-  /*opacity: 0.5;*/
+
+article.tweet header {
   padding: 10px;
-  height: 60px;
+  height: 70px;
   background: #eeeeee;
 }
-section.tweet span {
+article.tweet header img {
+  float: left;
+}
+article.tweet header h2{
+  display: inline;
+  margin: 10px;
+}
+article.tweet p {
+  padding : 10px;
+}
+
+
+
+article.tweet span {
   float: right;
 }
-section.tweet article {
+
+article.tweet {
   padding: 10px;
 }
-section.tweet footer {
+
+article.tweet footer {
   border-top: 1px solid #eeeeee;
   font-size: 70%;
   padding: 5px;
+}
+article.tweet footer p {
+  display: inline;
+}
+
+article.tweet footer i {
+  display: none;
+  float: right;
+  margin: 2px;
+
+}
+article.tweet:hover footer i {
+  display: block;
 }

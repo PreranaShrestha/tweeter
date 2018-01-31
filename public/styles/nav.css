@@ -7,6 +7,7 @@
   padding: 0 2em 0 2em;
   top: 0px;
   bottom: 0px;
+  z-index: 1;
 }
 #nav-bar .logo {
   height: 80px;
@@ -18,4 +19,23 @@
   margin-left: 10px;
   margin-top: 20px;
   font-size: 200%;
+}
+nav #compose {
+  background-color: #eeeeee;
+  margin-top: 5px;
+  float: right;
+  height: 70px;
+  width: 110px;
+  padding: 5px;
+  border-radius: 5px;
+}
+nav #compose h3 {
+  display: inline;
+}
+nav #compose i {
+  font-size: 46px
+  float: left;
+}
+nav #compose:hover {
+  background-color: white;
 }

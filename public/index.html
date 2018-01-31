@@ -17,6 +17,8 @@
 
     <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <!-- External JS -->
     <script type="text/javascript" src="/vendor/jquery-2.2.3.min.js"></script>
 
@@ -26,6 +28,7 @@
     <!-- Charater count js file -->
     <script type="text/javascript" src="/scripts/composer-char-counter.js"></script>
 
+
   </head>
 
   <body>
@@ -34,9 +37,12 @@
     <nav id="nav-bar">
       <img class="logo" src="/images/bird.png">
       <span class="header">Tweeter</span>
+      <button id='compose'>
+        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+        <h3>Compose</h3>
+      </button>
     </nav>
     <!-- Page-specific (main) content here -->
-
     <main class="container">
       <section class="new-tweet">
         <h2>Compose Tweet</h2>
@@ -45,18 +51,6 @@
           <input type="submit" value="Tweet">
            <span class="counter">140</span>
         </form>
-      </section>
-      <section class="tweet">
-          <header>
-            <h3> Bill Filds <span>@MrFields</span>
-            </h3>
-          </header>
-        <article>
-            <p> Little tweet here </p>
-        </article>
-          <footer>
-            10 days ago
-          </footer>
       </section>
     </main>
 
