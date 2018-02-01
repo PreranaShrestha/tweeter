@@ -7,13 +7,18 @@ const simulateDelay = require("./util/simulate-delay");
 module.exports = function makeDataHelpers(db) {
   return {
     saveTweet: function(newTweet, callback) {
-      db.collection("tweets").insertOne(newTweet);
-      callback(null, true);
+      db.collection("tweets")
+        .insertOne(newTweet)
+        .then(callback(null, true))
+        .catch(err => callback(err, null));
+      // callback(null, true);
     },
 
     // Get all tweets in `db`, sorted by newest first
     getTweets: function (callback) {
       db.collection("tweets").find().toArray((err, tweets) => {
+        if(err) { callback(err, null); }
+
         const sortNewestFirst = (a, b) => a.created_at - b.created_at;
         callback(null, tweets.sort(sortNewestFirst));
     });

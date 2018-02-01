@@ -4,56 +4,61 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
- function createTweetElement(tweet) {
+  const MAX_WORD_COUNT = 140;
+
+  function createTweetElement(tweet) {
+    const { avatars, name, handle } = tweet.user;
     const $tweet = $('<article>').addClass('tweet');
     const $header = $('<header>');
-    const $avatars = $('<img>').attr("src", tweet.user.avatars.small);
-    const $userName = $('<h2>').text(tweet.user.name);
-    const $handle = $('<span>').text(tweet.user.handle);
-    const $text = $('<p>');
-    $text.text(tweet.content.text);
+    const $avatars = $('<img>').attr("src", avatars.small);
+    const $userName = $('<h2>').text(name);
+    const $handle = $('<span>').text(handle);
+    const $text = $('<p>').text(tweet.content.text);
     const $footer = $('<footer>');
     const $icon = $('<i>').addClass('fa fa-flag');
-    $icon.append($('<i>').addClass('fa fa-retweet'), $('<i>').addClass('fa fa-heart') );
     const $created_at = $('<p>').text(moment(tweet.created_at).fromNow());
+    $icon.append($('<i>').addClass('fa fa-retweet'), $('<i>').addClass('fa fa-heart') );
     $($footer).append($created_at, $icon);
     $($header).append($avatars, $userName, $handle);
     $($tweet).append($header, $text, $footer);
     return $tweet;
- }
+  }
 
- function renderTweets(tweets) {
+  function renderTweets(tweets) {
     tweets.forEach(function(tweet) {
-    $('#tweet-container').prepend(createTweetElement(tweet));
-  });
- }
+      $('#tweet-container').prepend(createTweetElement(tweet));
+    });
+  }
 
  //Print Error Message
+ // shows in html
  function sendError(message) {
     event.preventDefault();
     $('p.errorMessage').remove();
-    const errorMessage = $('<p>' + message + '</p>').css('background', 'red').addClass('errorMessage');
+    const errorMessage = $('<p>').text(message).css('background', 'red').addClass('errorMessage');
     $('form').append(errorMessage);
   }
 
  //load Tweets
  function loadTweets() {
-  $.get('http://localhost:8080/tweets').done(function (tweets) {
-    $('#tweet-container').empty();
-    return renderTweets(tweets);
-  });
+  $.get('/tweets')
+    .done(tweets => {
+      $('#tweet-container').empty();
+      return renderTweets(tweets);
+    });
  }
 
 //dislay or hide the compose when compose button is pressed
  function composeButton(){
   $('#compose').on('click', event => {
     $(window).scrollTop(0);
-    const display = $('section.new-tweet').css('display');
+    const newTweetSec = $('section.new-tweet');
+    const display = newTweetSec.css('display');
     if(display === 'none') {
-      $('section.new-tweet').slideDown('slow');
-      $('section.new-tweet').find('textarea').focus();
+      newTweetSec.slideDown('slow');
+      newTweetSec.find('textarea').focus();
     } else {
-      $('section.new-tweet').slideUp('slow');
+      newTweetSec.slideUp('slow');
     }
    });
  }
@@ -65,19 +70,18 @@ function composeTweet() {
     const wordCount = $('textarea').val().length;
     if(wordCount === 0) {
       sendError("Textarea is Empty.");
-    } else if (wordCount > 140) {
-      sendError("Word count has to be less than 140");
-      $('textarea').val("");
-      $('.counter').text('140');
+    } else if (wordCount > MAX_WORD_COUNT) {
+      sendError(`Word count has to be less than ${MAX_WORD_COUNT}`);
+
     } else {
       const textArea = $('textarea').val();
       const text = $('form').serialize();
       $('p.errorMessage').remove();
-      $.post('http://localhost:8080/tweets', text, function(data) {
+      $.post('/tweets', text, data => {
         loadTweets();
       });
       $('textarea').val("");
-      $('.counter').text('140');
+      $('.counter').text(`${MAX_WORD_COUNT}`);
     }
   });
 }

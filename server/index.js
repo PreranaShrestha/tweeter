@@ -15,7 +15,7 @@ app.use(express.static("public"));
 // The in-memory database of tweets. It's a basic object with an array in it.
 MongoClient.connect(MONGODB_URI, (err, db) => {
   if(err) {
-    console.log("err"+err);
+    console.log("Err",err);
   }
   // const db = require("./lib/in-memory-db");
   // The `data-helpers` module provides an interface to the database of tweets.
