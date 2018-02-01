@@ -3,22 +3,20 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
+
  function createTweetElement(tweet) {
     const $tweet = $('<article>').addClass('tweet');
     const $header = $('<header>');
     const $avatars = $('<img>').attr("src", tweet.user.avatars.small);
     const $userName = $('<h2>').text(tweet.user.name);
     const $handle = $('<span>').text(tweet.user.handle);
-
-    //console.log(timeAgo(tweet.created_at));
     const $text = $('<p>');
     $text.text(tweet.content.text);
     const $footer = $('<footer>');
-    const $icon = $('<i>');
-    $icon.addClass('fa fa-flag fa fa-heart');
-    const $created_at = $('<p>').text(tweet.created_at);
+    const $icon = $('<i>').addClass('fa fa-flag');
+    $icon.append($('<i>').addClass('fa fa-retweet'), $('<i>').addClass('fa fa-heart') );
+    const $created_at = $('<p>').text(moment(tweet.created_at).fromNow());
     $($footer).append($created_at, $icon);
-
     $($header).append($avatars, $userName, $handle);
     $($tweet).append($header, $text, $footer);
     return $tweet;
@@ -26,7 +24,7 @@
 
  function renderTweets(tweets) {
     tweets.forEach(function(tweet) {
-    $('.container').find('.new-tweet').after(createTweetElement(tweet));
+    $('#tweet-container').prepend(createTweetElement(tweet));
   });
  }
 
@@ -41,6 +39,7 @@
  //load Tweets
  function loadTweets() {
   $.get('http://localhost:8080/tweets').done(function (tweets) {
+    $('#tweet-container').empty();
     return renderTweets(tweets);
   });
  }
@@ -72,23 +71,10 @@ function composeTweet() {
       $('.counter').text('140');
     } else {
       const textArea = $('textarea').val();
-      const text = $('textarea').serialize();
-      $.post('http://localhost:8080/tweets', text).done(function() {
-        renderTweets([{
-        "user": {
-          "name": "Prerana",
-          "avatars": {
-            "small":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_50.png",
-            "regular": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188.png",
-            "large":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_200.png"
-          },
-          "handle": "@SirIsaac"
-        },
-        "content": {
-          "text": textArea
-        },
-        "created_at": Math.round(new Date().getTime()/1000)
-      }]);
+      const text = $('form').serialize();
+      $('p.errorMessage').remove();
+      $.post('http://localhost:8080/tweets', text, function(data) {
+        loadTweets();
       });
       $('textarea').val("");
       $('.counter').text('140');
