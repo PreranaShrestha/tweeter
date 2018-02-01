@@ -7,6 +7,7 @@ This repository is the starter code for the project: Students will fork and clon
 ## Screenshot
 
 !["Tweeter home page"](https://github.com/PreranaShrestha/tweeter/blob/master/doc/tweeter-home%20page.png)
+!["Screenshot of tweet compose box"](https://github.com/PreranaShrestha/tweeter/blob/master/doc/Compose-box.png)
 
 ## Getting Started
 
