@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+
+    <meta charset="UTF-8">
+    <meta name="description" content="Free Web tutorials">
     <!-- Meta Information -->
     <title>Tweeter - Home Page</title>
 
@@ -34,11 +37,20 @@
 
   </head>
 
-  <body>
+  <body>composeTweet
     <!-- Top nav bar (fixed) -->
     <nav id="nav-bar">
       <img class="logo" src="/images/bird.png">
       <span class="header">Tweeter</span>
+        <div id="login">
+          <form method="POST" action="/login" id="loginForm">
+            <label>Username</label>
+            <label>Password</label><br>
+            <input text="text" name="userName" id="userName">
+            <input type="password" name="password" id="password">
+            <button id="loginButton" type="submit" form="loginForm">Login</button>
+          </form>
+        </div>
       <button id='compose'>
         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
         <h3>Compose</h3>
@@ -48,7 +60,7 @@
     <main class="container">
       <section class="new-tweet">
         <h2>Compose Tweet</h2>
-        <form method="POST" action="/tweets/">
+        <form method="POST" action="/tweets/" id="composeTweet">
           <textarea name="text" placeholder="What are you humming about?"></textarea>
           <input type="submit" value="Tweet">
           <span class="counter">140</span>

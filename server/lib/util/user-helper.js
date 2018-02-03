@@ -7,11 +7,11 @@ const md5 = require('md5');
 
 module.exports = {
 
-  generateRandomUser: () => {
+  generateRandomUser: (name) => {
     const gender    = chance.gender();
     const firstName = chance.first({gender: gender});
     const lastName  = chance.last();
-    const userName  = firstName + " " + lastName;
+    const userName  = name ? name : firstName + " " + lastName;
 
     let userHandle = "@";
     if (Math.random() > 0.5) {
@@ -34,10 +34,12 @@ module.exports = {
       large:   `${avatarUrlPrefix}_200.png`
     }
 
+
     return {
       name: userName,
       handle: userHandle,
-      avatars: avatars
+      avatars: avatars,
+
     };
   }
 };
