@@ -10,7 +10,7 @@
     const { avatars, name, handle } = tweet.user;
     const $tweet = $('<article>').addClass('tweet').data('id', tweet._id);
     const $header = $('<header>');
-    const $avatars = $('<img>').attr("src", tweet.user.small);
+    const $avatars = $('<img>').attr("src", avatars.small);
     const $userName = $('<h2>').text(name);
     const $handle = $('<span>').text(handle);
     const $text = $('<p>').text(tweet.content.text);
@@ -26,8 +26,13 @@
   }
 
   function renderTweets(tweets) {
+    var i = 0;
+
     tweets.forEach(function(tweet) {
+      console.log(i);
+
       $('#tweet-container').prepend(createTweetElement(tweet));
+      i = i + 1;
     });
   }
 

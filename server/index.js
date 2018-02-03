@@ -8,9 +8,14 @@ const bodyParser    = require("body-parser");
 const app           = express();
 const MongoClient   = require("mongodb").MongoClient;
 const MONGODB_URI   = "mongodb://localhost:27017/tweeter";
+const cookieSession = require('cookie-session');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
+app.use(cookieSession({
+  name: 'session',
+  keys: ["secretkey"]
+}));
 
 // The in-memory database of tweets. It's a basic object with an array in it.
 MongoClient.connect(MONGODB_URI, (err, db) => {

@@ -20,6 +20,7 @@ module.exports = function(DataHelpers) {
 
   tweetsRoutes.post("/", (req, res) => {
     const userName = req.body.userName;
+    req.session.userId = userName;
     if (!req.body.text) {
       res.status(400).json({ error: 'invalid request: no data in POST body'});
       return;
