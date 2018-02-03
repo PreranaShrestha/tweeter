@@ -113,6 +113,7 @@ function loginForm() {
           $('#compose').show();
           $('section.new-tweet').show();
           $('i.fa-heart').show();
+          $('#logout').show();
         }
 
       },
@@ -126,7 +127,23 @@ function loginForm() {
 
 function logOut() {
   $('#logout').on('click', () => {
-
+    console.log("logout click");
+    $.ajax({
+      url: '/tweets/logout',
+      method:'POST',
+      success: function(){
+        console.log("logout");
+        $('#compose').hide();
+        $('section.new-tweet').hide();
+        $('i.fa-heart').hide();
+        $('#logout').hide();
+        $('#login').show();
+      },
+      error: function(error){
+        console.log("there was an error");
+        console.log(error);
+      }
+    });
   });
 }
 
@@ -155,11 +172,13 @@ $(() => {
   $('#compose').hide();
   $('section.new-tweet').hide();
   $('i.fa-heart').hide();
+  $('#logout').hide();
    loadTweets();
    composeButton();
    composeTweet();
    likeButton();
    loginForm();
+   logOut();
 });
 
 

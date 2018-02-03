@@ -28,16 +28,13 @@ module.exports = function makeDataHelpers(db) {
         {$set: { "likes": likes, "likeStatus": likeStatus } }
         ).then(callback(null, true));
     },
-
-
     findUser: function(userName, password, callback) {
       db.collection("users")
       .findOne({Username: userName, Password: password})
-      .then(result=>{
+      .then(result => {
         console.log(result);
         callback(null, result);
       })
-      // .catch(err => callback(err, null));
     }
   };
 }

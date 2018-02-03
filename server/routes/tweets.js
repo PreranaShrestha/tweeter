@@ -20,7 +20,7 @@ module.exports = function(DataHelpers) {
 
   tweetsRoutes.post("/", (req, res) => {
     const userName = req.body.userName;
-    req.session.userId = userName;
+    req.session.userName = userName;
     if (!req.body.text) {
       res.status(400).json({ error: 'invalid request: no data in POST body'});
       return;
@@ -47,7 +47,6 @@ module.exports = function(DataHelpers) {
   });
 
   tweetsRoutes.post("/login", (req, res) => {
-    console.log(req.body);
     DataHelpers.findUser(req.body.userName, req.body.password, (err, userName) => {
       console.log("err", err);
       if (err) {
@@ -67,5 +66,13 @@ module.exports = function(DataHelpers) {
       }
     });
   });
+
+  //route to logout
+  tweetsRoutes.post("/logout", (req, res) =>{
+    req.session.userName = null ;
+    res.status(201).send();
+  });
+
+
   return tweetsRoutes;
 }

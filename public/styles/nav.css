@@ -46,3 +46,7 @@
 #compose:hover {
   background-color: white;
 }
+#logout {
+  position: absolute;
+  right: 150px;
+}
