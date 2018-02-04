@@ -26,18 +26,13 @@
   }
 
   function renderTweets(tweets) {
-    var i = 0;
-
     tweets.forEach(function(tweet) {
-      console.log(i);
-
       $('#tweet-container').prepend(createTweetElement(tweet));
       i = i + 1;
     });
   }
 
  //Print Error Message
- // shows in html
  function sendError(message) {
     event.preventDefault();
     $('p.errorMessage').remove();
@@ -138,6 +133,8 @@ function logOut() {
         $('i.fa-heart').hide();
         $('#logout').hide();
         $('#login').show();
+        $('#userName').val("");
+        $('#password').val("")
       },
       error: function(error){
         console.log("there was an error");
