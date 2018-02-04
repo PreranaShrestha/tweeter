@@ -20,13 +20,19 @@
   margin-top: 20px;
   font-size: 200%;
 }
-#login {
-  position: fixed;
-  top: 0px;
-  right: 0px;
+
+.login-container {
+  position:absolute;
+  top:0px;
+  right:10px;
+  display:grid;
+  max-width: 300px;
+  grid-gap: 5px;
+  grid-template-columns: 40% 40% 20%;
+  margin: 0 auto;
 }
-#login label {
-  padding: 30px;
+.password {
+  grid-column: 2/4;
 }
 #compose {
   background-color: #eee;

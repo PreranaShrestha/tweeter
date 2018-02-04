@@ -28,7 +28,6 @@
   function renderTweets(tweets) {
     tweets.forEach(function(tweet) {
       $('#tweet-container').prepend(createTweetElement(tweet));
-      i = i + 1;
     });
   }
 

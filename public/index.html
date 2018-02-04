@@ -44,11 +44,13 @@
       <span class="header">Tweeter</span>
         <div id="login">
           <form method="POST" action="/login" id="loginForm">
-            <label>Username</label>
-            <label>Password</label><br>
-            <input text="text" name="userName" id="userName">
-            <input type="password" name="password" id="password">
-            <button id="loginButton" type="submit" form="loginForm">Login</button>
+            <div class="login-container">
+              <div class="userName">Username</div>
+              <div class="password">Password</div>
+              <input text="text" name="userName" id="userName">
+              <input type="password" name="password" id="password">
+              <button id="loginButton" type="submit" form="loginForm">Login</button>
+            </div>
           </form>
         </div>
       <button id="logout">logout</button>

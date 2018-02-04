@@ -70,6 +70,7 @@ module.exports = function(DataHelpers) {
   //route to logout
   tweetsRoutes.post("/logout", (req, res) =>{
     req.session.userName = null ;
+    // res.redirect("/");
     res.status(201).send();
   });
 
